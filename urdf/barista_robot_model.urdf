@@ -148,7 +148,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>          
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
             <material name="blue"/>
         </visual>
@@ -156,14 +156,14 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
         </collision>
 
         <inertial>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <mass value="0.01"/>
-            <inertia ixx="5.728253333333333e-07" ixy="0" ixz="0" iyy="5.728253333333333e-07" iyz="0" izz="1.125e-06"/>
+            <inertia ixx="1.5728253333333338e-06" ixy="0" ixz="0" iyy="1.5728253333333338e-06" iyz="0" izz="3.1250000000000006e-06"/>
         </inertial>
 
     </link>
@@ -187,7 +187,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
             <material name="red"/>
         </visual>
@@ -195,14 +195,14 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
         </collision>
 
         <inertial>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <mass value="0.01"/>
-            <inertia ixx="5.728253333333333e-07" ixy="0" ixz="0" iyy="5.728253333333333e-07" iyz="0" izz="1.125e-06"/>
+            <inertia ixx="1.5728253333333338e-06" ixy="0" ixz="0" iyy="1.5728253333333338e-06" iyz="0" izz="3.1250000000000006e-06"/>
         </inertial>
     </link>
 
@@ -265,7 +265,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
             <material name="blue"/>
         </visual>
@@ -273,14 +273,14 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
         </collision>
 
         <inertial>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <mass value="0.01"/>
-            <inertia ixx="5.728253333333333e-07" ixy="0" ixz="0" iyy="5.728253333333333e-07" iyz="0" izz="1.125e-06"/>
+            <inertia ixx="1.5728253333333338e-06" ixy="0" ixz="0" iyy="1.5728253333333338e-06" iyz="0" izz="3.1250000000000006e-06"/>
         </inertial>
     </link>
 
@@ -303,7 +303,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
             <material name="red"/>
         </visual>
@@ -311,14 +311,14 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.015"/>
+            <cylinder length="0.00352" radius="0.025"/>
             </geometry>
         </collision>
 
         <inertial>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <mass value="0.01"/>
-            <inertia ixx="5.728253333333333e-07" ixy="0" ixz="0" iyy="5.728253333333333e-07" iyz="0" izz="1.125e-06"/>
+            <inertia ixx="1.5728253333333338e-06" ixy="0" ixz="0" iyy="1.5728253333333338e-06" iyz="0" izz="3.1250000000000006e-06"/>
         </inertial>
     </link>
 
@@ -408,7 +408,7 @@
 
     <joint name="right_rod_front_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.05 0.125 0.1875" />
-        <parent link="base_link" />
+        <parent link="main_body" />
         <child link="rod_right_front" />
     </joint>
 
@@ -441,7 +441,7 @@
 
     <joint name="right_rod_back_joint" type="fixed">
         <origin rpy="0 0 0" xyz="-0.05 0.125 0.1875" />
-        <parent link="base_link" />
+        <parent link="main_body" />
         <child link="rod_right_back" />
     </joint>
 
@@ -474,7 +474,7 @@
 
     <joint name="left_rod_front_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.05 -0.125 0.1875" />
-        <parent link="base_link" />
+        <parent link="main_body" />
         <child link="rod_left_front" />
     </joint>
 
@@ -507,7 +507,7 @@
 
     <joint name="left_rod_back_joint" type="fixed">
         <origin rpy="0 0 0" xyz="-0.05 -0.125 0.1875" />
-        <parent link="base_link" />
+        <parent link="main_body" />
         <child link="rod_left_back" />
     </joint>
 
@@ -540,7 +540,7 @@
 
     <joint name="base_cup_joint" type="fixed">
         <origin rpy="0 0 0" xyz="0.0 0.0 0.3425" />
-        <parent link="base_link" />
+        <parent link="main_body" />
         <child link="cup_holder" />
     </joint>
 
@@ -591,5 +591,82 @@
 
         </plugin>
     </gazebo>
+
+    <!-- Laser-->
+
+    <link name="laser_scan_link">
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <mesh filename="package://barista_robot_description/meshes/sick_s300.stl" scale="0.5 0.5 0.5"/>
+        </geometry>
+        </visual>
+
+        <collision>
+        <origin rpy="0 0 0" xyz="0 0 0.0204"/>
+        <geometry>
+            <cylinder length="0.0408" radius="0.037493"/>
+        </geometry>
+        </collision>
+
+        <inertial>
+
+        <mass value="0.01"/>
+        <origin rpy="0 0 0" xyz="0 0 0.0204"/>
+        <inertia ixx="6.066578520833334e-06" ixy="0" ixz="0" iyy="6.072950163333333e-06" iyz="0" izz="9.365128684166666e-06"/>
+        </inertial>
+    </link>
+
+    <joint name="laser_scan_link_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.0775"/>
+        <parent link="main_body"/>
+        <child link="laser_scan_link"/>
+    </joint>
+
+    <gazebo reference="laser_scan_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <link name="laser_scan_frame">
+    </link>
+
+    <joint name="laser_scan_frame_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0.05"/>
+        <parent link="laser_scan_link"/>
+        <child link="laser_scan_frame"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+ 
+
+	<gazebo reference="laser_scan_frame">
+    <sensor name="sensor_ray" type="ray">
+        <pose>0 0 0 0 0 0</pose>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>200</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-3.14</min_angle>
+              <max_angle>3.14</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.15</min>
+            <max>5.0</max>
+          </range>
+        </ray>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+        <update_rate>100.0</update_rate>
+        <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+            <remapping>~/out:=scan</remapping>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+        </plugin>
+    </sensor>
+	</gazebo>
+
+
 
 </robot>

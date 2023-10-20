@@ -10,7 +10,22 @@ from ament_index_python.packages import get_package_prefix
 def generate_launch_description():
     
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
-    
+    install_dir = get_package_prefix("barista_robot_description")
+    gazebo_models_path = os.path.join(get_package_share_directory("barista_robot_description"), 'meshes')
+
+    if 'GAZEBO_MODEL_PATH' in os.environ:
+        os.environ['GAZEBO_MODEL_PATH'] =  os.environ['GAZEBO_MODEL_PATH'] + ':' + install_dir + '/share' + ':' + gazebo_models_path
+    else:
+        os.environ['GAZEBO_MODEL_PATH'] =  install_dir + "/share" + ':' + gazebo_models_path
+
+    if 'GAZEBO_PLUGIN_PATH' in os.environ:
+        os.environ['GAZEBO_PLUGIN_PATH'] = os.environ['GAZEBO_PLUGIN_PATH'] + ':' + install_dir + '/lib'
+    else:
+        os.environ['GAZEBO_PLUGIN_PATH'] = install_dir + '/lib'
+
+    print("GAZEBO MODELS PATH=="+str(os.environ["GAZEBO_MODEL_PATH"]))
+    print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"]))
+
    # Include the Gazebo launch file with the modified launch arguments
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -54,6 +69,10 @@ def generate_launch_description():
             arguments=['-d', rviz_config_dir])
 
     return LaunchDescription([
+        DeclareLaunchArgument(
+          'world',
+          default_value=[os.path.join(get_package_share_directory("barista_robot_description"),'worlds', 'empty.world'), ''],
+          description='SDF world file'),
         gazebo,
         rsp,
         spawn_robot,
