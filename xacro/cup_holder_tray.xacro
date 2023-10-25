@@ -19,9 +19,17 @@
                 <geometry>
                 <cylinder length="${cup_holder_tray_width}" radius="${cup_holder_tray_radius}"/>
                 </geometry>
-                <material name="blue">
-                    <color rgba="0.0 0.0 1.0 1"/>
-                </material>
+                <xacro:if value="${robot_name == 'rick'}">
+                    <material name="blue">
+                        <color rgba="1.0 0.0 0.0 1"/>
+                    </material>
+                </xacro:if>
+                <xacro:if value="${robot_name == 'morty'}">
+                    <material name="red">
+                        <color rgba="0.0 0.0 1.0 1"/>
+                    </material>
+                </xacro:if>
+                
             </visual>
 
             <collision>
@@ -40,7 +48,12 @@
         </link>
 
         <gazebo reference="${cup_holder_tray_name}">
-            <material>Gazebo/Blue</material>
-        </gazebo>
+            <xacro:if value="${robot_name == 'rick'}">
+                <material>Gazebo/Blue</material>
+            </xacro:if>
+            <xacro:if value="${robot_name == 'morty'}">
+                <material>Gazebo/Red</material>
+            </xacro:if>
+            </gazebo>
     </xacro:macro>
 </robot>
