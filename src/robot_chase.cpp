@@ -16,7 +16,7 @@ public:
         tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
         // Create publisher for Twist messages
-        rick_cmd_vel_publisher = this->create_publisher<geometry_msgs::msg::Twist>("/rick/cmd_vel", 10);
+        rick_cmd_vel_publisher = this->create_publisher<geometry_msgs::msg::Twist>("/rick/cmd_vel", 1);
 
         // Timer to update the control loop
         timer = this->create_wall_timer(0.05s, std::bind(&RobotChaseNode::controlLoop, this));
@@ -28,7 +28,7 @@ private:
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr rick_cmd_vel_publisher;
     rclcpp::TimerBase::SharedPtr timer;
     rclcpp::Time now = this->get_clock()->now();
-    double kp_yaw = 0.6;
+    double kp_yaw = 0.7;
     double kp_distance = 0.5;
 
     void controlLoop() {
@@ -40,12 +40,19 @@ private:
             double error_yaw = calculateYawError(transform);
 
             geometry_msgs::msg::Twist twist;
-            twist.linear.x = kp_distance * error_distance;
-            twist.angular.z = kp_yaw * error_yaw;
-            RCLCPP_DEBUG(this->get_logger(), "Linear Velocity: %f, Angular Velocity: %f", twist.linear.x, twist.angular.z);
-            RCLCPP_DEBUG(this->get_logger(), "Linear Error: %f, Angular Error: %f", error_distance, error_yaw);
+            if (error_distance<0.40){
+                twist.linear.x = 0.0;
+                twist.angular.z = 0.0;
+                rick_cmd_vel_publisher->publish(twist);
+            }
+            else{
+                twist.linear.x = kp_distance * error_distance; //std::min(0.5,kp_distance * error_distance);
+                twist.angular.z = kp_yaw * error_yaw;
+                rick_cmd_vel_publisher->publish(twist);
+            }
 
-            rick_cmd_vel_publisher->publish(twist);
+            RCLCPP_INFO(this->get_logger(), "Linear Velocity: %f, Angular Velocity: %f", twist.linear.x, twist.angular.z);
+            RCLCPP_INFO(this->get_logger(), "Linear Error: %f, Angular Error: %f", error_distance, error_yaw);
         } catch (tf2::TransformException &ex) {
             RCLCPP_ERROR(this->get_logger(), "TF Exception: %s", ex.what());
         }
