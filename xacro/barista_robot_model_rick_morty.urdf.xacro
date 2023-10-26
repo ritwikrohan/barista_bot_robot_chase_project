@@ -30,6 +30,13 @@
         <color rgba="1.0 1.0 1.0 1"/>
     </material>
 
+    <!-- Macro of cylinder inertia -->
+    <xacro:macro name="cylinder_inertia" params="m r h">
+        <inertia  ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
+              iyy="${m*(3*r*r+h*h)/12}" iyz = "0"
+              izz="${m*r*r/2}" /> 
+    </xacro:macro>
+
     <link name = "base_link">
     </link>
 
@@ -55,8 +62,9 @@
 
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 0"/>
-            <mass value="2.0"/>
-            <inertia ixx="0.019846166666666665" ixy="0" ixz="0" iyy="0.019846166666666665" iyz="0" izz="0.031684"/>
+            <mass value="10.0"/>
+             <xacro:cylinder_inertia  m="10.0" r="0.178" h="0.155" />
+            <!-- <inertia ixx="0.019846166666666665" ixy="0" ixz="0" iyy="0.019846166666666665" iyz="0" izz="0.031684"/> -->
         </inertial>
     </link>
 
@@ -67,6 +75,8 @@
         <xacro:if value="${robot_name == 'morty'}">
             <material>Gazebo/Red</material>
         </xacro:if>
+        <mu1>0.01</mu1> <!-- Adjust these friction coefficients as needed -->
+        <mu2>0.01</mu2>
     </gazebo>
 
     <joint name="base_link_joint" type="fixed">
@@ -105,7 +115,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>          
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
             <material name="blue"/>
         </visual>
@@ -113,7 +123,7 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
         </collision>
 
@@ -144,7 +154,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
             <material name="red"/>
         </visual>
@@ -152,7 +162,7 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
         </collision>
 
@@ -222,7 +232,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
             <material name="blue"/>
         </visual>
@@ -230,7 +240,7 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
         </collision>
 
@@ -260,7 +270,7 @@
         <visual>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
             <material name="red"/>
         </visual>
@@ -268,7 +278,7 @@
         <collision>
             <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
             <geometry>
-            <cylinder length="0.00352" radius="0.025"/>
+            <cylinder length="0.00352" radius="0.02"/>
             </geometry>
         </collision>
 
